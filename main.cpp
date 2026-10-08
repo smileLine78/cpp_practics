@@ -1,14 +1,8 @@
 #include <iostream>
-#include <cstdlib>
+#include <stdexcept>
 
-int ** createMatrix(int& rows, int& col)
+int ** createMatrix(size_t rows, size_t col)
 {
-    std::cout << "размер матрицы:" << std::endl;
-    std::cin >> rows >> col;
-    if(std::cin.fail() || rows < 0 || col < 0){
-        return nullptr;
-    }
-
     int ** matrix;
     try{
         matrix = new int*[rows];
@@ -30,15 +24,14 @@ int ** createMatrix(int& rows, int& col)
                 }
             }
         }
-
     }
-    catch (const std::bad_alloc){
+    catch (...){
         return nullptr;
     }
     return matrix;
 }
 
-void printMatrix(int ** mat, int rows, int col){
+void printMatrix(int ** mat, size_t rows, size_t col){
     for(int i = 0; i < rows; ++i){
         for(int j = 0; j <col; ++j){
             std::cout << mat[i][j] << " ";
@@ -47,7 +40,7 @@ void printMatrix(int ** mat, int rows, int col){
         }
 }
 
-void transpose(int ** mat, int rows, int col){
+void transpose(int ** mat, size_t rows, size_t col){
     std::cout << "транспонированая матрица" << std::endl;
     for(int i = 0; i < rows; ++i){
         for(int j = 0; j < col; ++j){
@@ -58,13 +51,17 @@ void transpose(int ** mat, int rows, int col){
 }
 
 int main() {
-    int rows,col = 0;
-    int ** mat = createMatrix(rows,col);
-    if (mat == nullptr){
+    size_t rows,col = 0;
+    if (!(std::cin >> rows >> col)) {
         return 1;
     }
-    printMatrix(mat,rows,col);
-    transpose(mat, rows,col);
+    try {
+        int ** mat = createMatrix(rows,col);
+        printMatrix(mat, col, rows);
+        transpose(mat, rows,col);
+    } 
+    catch (const std::bad_alloc &) {
+        return 2;
+    } 
+    return 0;
 }
-
-

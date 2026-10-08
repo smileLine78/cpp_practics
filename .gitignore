@@ -1,1 +1,72 @@
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Linker and Debugger files
+*.ilk
+*.pdb
+*.dwo
+
+# Compiled Dynamic and Static libraries
+*.so
+*.dylib
+*.dll
+*.a
+*.lib
+*.la
+
+# Fortran modules
+*.mod
+*.smod
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Build directories and CMake outputs
+build/
+CMakeFiles/
+CMakeCache.txt
+Makefile
+cmake_install.cmake
+compile_commands.json
+
+# Temporary files
+*.tmp
+*.log
+*.bak
+*.swp
+*.swo
+
+# Package and cache directories
+vcpkg_installed/
+Testing/
+.cache/
+
+# IDE and Editor files (VS Code, JetBrains, Visual Studio)
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+.vs/
+
+# OS generated files
+.DS_Store
+Thumbs.desktop
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
 main
